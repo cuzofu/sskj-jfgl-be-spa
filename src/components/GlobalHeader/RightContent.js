@@ -75,7 +75,6 @@ export default class GlobalHeaderRight extends PureComponent {
       theme,
     } = this.props;
     const isLogin = !isEmptyObject(currentUser);
-    console.log(isLogin);
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key="userCenter">

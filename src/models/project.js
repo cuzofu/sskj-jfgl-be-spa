@@ -1,27 +1,54 @@
-import { queryProjectNotice } from '@/services/api';
+import { queryProject, addProject, removeProject, updateProject } from '@/services/project';
 
 export default {
   namespace: 'project',
 
   state: {
-    notice: [],
+    data: {
+      list: [],
+      pagination: {},
+    },
   },
 
   effects: {
-    *fetchNotice(_, { call, put }) {
-      const response = yield call(queryProjectNotice);
+    *fetch({ payload }, { call, put }) {
+      const response = yield call(queryProject, payload);
       yield put({
-        type: 'saveNotice',
-        payload: Array.isArray(response) ? response : [],
+        type: 'save',
+        payload: response,
       });
+    },
+    *add({ payload, callback }, { call, put }) {
+      const response = yield call(addProject, payload);
+      yield put({
+        type: 'save',
+        payload: response,
+      });
+      if (callback) callback();
+    },
+    *remove({ payload, callback }, { call, put }) {
+      const response = yield call(removeProject, payload);
+      yield put({
+        type: 'save',
+        payload: response,
+      });
+      if (callback) callback();
+    },
+    *update({ payload, callback }, { call, put }) {
+      const response = yield call(updateProject, payload);
+      yield put({
+        type: 'save',
+        payload: response,
+      });
+      if (callback) callback();
     },
   },
 
   reducers: {
-    saveNotice(state, action) {
+    save(state, action) {
       return {
         ...state,
-        notice: action.payload,
+        data: action.payload,
       };
     },
   },

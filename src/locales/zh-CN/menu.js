@@ -3,6 +3,8 @@ export default {
   'menu.login': '登录',
   'menu.register': '注册',
   'menu.register.result': '注册结果',
+  'menu.project': '项目信息',
+  'menu.project.basicInfo': '基础信息',
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',
   'menu.dashboard.monitor': '监控页',
